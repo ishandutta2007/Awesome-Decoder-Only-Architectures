@@ -41,3 +41,15 @@ Unlike Encoder-Decoder frameworks that map an explicit input space to an output 
 
 ---
 
+## 📈 Star History
+<div align="center">
+   <a href="https://star-history.com/#ishandutta2007/Awesome-Decoder-Only-Architectures&Date">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Decoder-Only-Architectures&type=Date&theme=dark" />
+      <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Decoder-Only-Architectures&type=Date" />
+      <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=ishandutta2007/Awesome-Decoder-Only-Architectures&type=Date" />
+    </picture>
+   </a>
+</div>
+
+
