@@ -5,44 +5,14 @@ Unlike Encoder-Decoder frameworks that map an explicit input space to an output 
 
 ---
 
-## Architectural Overview
+## Architectural Overview & Key Implementations
 
-| Model Category | Key Examples | Primary Modality & Input/Output | Core Mechanism |
-| :--- | :--- | :--- | :--- |
-| **Large Language Models (LLMs)** | **GPT-4**, **Llama 3**, **Mistral** | Text → Text (Generation, Chat, Reasoning) | **Causal Masked Self-Attention**: Tokens can only attend to previous tokens in the sequence, preventing leaks from the future. |
-| **Code Generation Models** | **CodeLlama**, **StarCoder** | Code/Text → Code (Autocompletion, Synthesis) | **Fill-in-the-Middle (FIM)**: Specialized causal masking that allows the model to condition on both prefix and suffix code block context. |
-| **Autoregressive Vision Models** | **ImageGPT**, **Parti** | Pixels/Text → Image / Pixels → Pixels | **Pixel-by-Pixel Flattening**: Images are treated as a flattened sequence of visual tokens and generated sequentially. |
-| **Multimodal Native Decoders** | **Gemini**, **GPT-4o** | Text/Image/Audio → Text/Image/Audio | **Any-to-Any Tokenization**: Inputs from all modalities are mapped into a single shared embedding space and processed by one uniform decoder. |
+| Category | Key Models | Year | First Paper | Mechanism | Impact |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Large Language Models (LLMs)** | GPT Series, Llama Series | 2018 | [Improving Language Understanding](https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf) | **Causal Masked Self-Attention**: Stacked layers predict the next token by attending only to previous context. | Popularized "scaling laws," proving that massive data and compute yield emergent reasoning. |
+| **Code Generation Models** | StarCoder, CodeLlama | 2022 | [Efficient Training of Language Models to Fill in the Middle](https://arxiv.org/abs/2207.14255) | **Fill-in-the-Middle (FIM)**: Training on rearranged data to predict text between a known prefix and suffix. | Transformed dev workflows with smart IDE autocompletion and accurate code infilling. |
+| **Autoregressive Vision Models** | ImageGPT (iGPT), Parti | 2020 | [Generative Pretraining from Pixels](https://cdn.openai.com/papers/Generative_Pretraining_from_Pixels.pdf) | **Pixel-by-Pixel Flattening**: Images are treated as flattened sequences of visual tokens for sequential generation. | Proved generative principles transfer from text to visual learning without 2D-specific priors. |
+| **Multimodal Native Decoders** | Gemini, GPT-4o, Gato | 2022 | [A Generalist Agent (Gato)](https://arxiv.org/abs/2205.06175) | **Any-to-Any Tokenization**: A single unified decoder processes text, audio, and visual patches in a shared space. | Drastically reduces latency and retains emotional nuances in multimodal output. |
 
 ---
-
-## Key Architectures & Implementations
-
-### 1. Large Language Models (The Autoregressive Kings)
-
-#### GPT Series (Generative Pre-trained Transformer) by OpenAI
-* **Mechanism:** GPT models stack masked self-attention layers. When given a prompt, the model processes the tokens simultaneously during ingestion (prefill), and then generates new text token-by-token (decoding) by appending each new token back into its own input sequence.
-* **Impact:** Popularized the paradigm of "scaling laws," proving that raw parameter count, data volume, and compute yield emergent reasoning capabilities without changing the fundamental architecture.
-
-#### Llama Series by Meta
-* **Mechanism:** An open-weights implementation of the standard decoder-only Transformer, introducing key optimizations like Rotary Position Embeddings (RoPE), SwiGLU activation functions, and Grouped-Query Attention (GQA) for faster inference.
-* **Impact:** Democratized AI research by providing production-grade, highly efficient decoder models for local deployment and fine-tuning.
-
-### 2. Code Generation (The Context Completers)
-
-#### StarCoder / CodeLlama
-* **Mechanism:** While still structurally decoder-only, these models use **Fill-in-the-Middle (FIM)** training. The data array is rearranged to place a middle section of code at the end of the sequence, training the causal model to predict text trapped between a known prefix and suffix.
-* **Impact:** Transformed software development by enabling smart IDE autocompletion, code infilling, and accurate docstring generation.
-
-### 3. Autoregressive Vision & Image Generation
-
-#### ImageGPT (iGPT) by OpenAI
-* **Mechanism:** This approach flattens images into a single sequence of pixels (or pixel clusters) and trains a standard GPT-2 decoder to predict the next pixel value. 
-* **Impact:** Proved that generative pre-training principles transfer perfectly from human language to visual representation learning without any built-in knowledge of 2D image structures.
-
-### 4. Multimodal Native Decoders (The Any-to-Any Systems)
-
-#### Native Omni Models (e.g., GPT-4o, Gemini Ecosystem)
-* **Mechanism:** Rather than stitching a separate vision encoder to a text decoder, these modern systems feed text tokens, audio waveforms (tokenized), and visual patches directly into a singular, massively unified decoder network.
-* **Impact:** Drastically reduces voice-to-voice latency and retains emotional nuances (tonality, pacing) that are typically lost when routing data through separate encoder pipelines.
 
