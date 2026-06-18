@@ -1,5 +1,8 @@
+
+# 🚀 Awesome Decoder-Only Architectures 🤖
+
 <p align="center">
-  <img src="./assets/banner.svg" alt="Awesome Decoder-Only Architectures Banner" width="800">
+  <img src="assets/banner.svg" alt="Awesome Decoder-Only Architectures" width="800">
 </p>
 
 <p align="center">
@@ -12,7 +15,6 @@
 
 ---
 
-# 🚀 Awesome Decoder-Only Architectures 🤖
 
 Welcome to the definitive collection of **Decoder-Only Architectures**! 🌟 This repository explores the power of autoregressive models that are shaping the future of Artificial Intelligence. From text to pixels, these models predict the future, one token at a time. 🔮
 
